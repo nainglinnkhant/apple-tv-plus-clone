@@ -1,0 +1,80 @@
+.shows-section {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  padding-bottom: 100px;
+
+  .shows-marquee {
+  }
+
+  ul {
+    display: flex;
+    width: 3980px;
+    position: relative;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 10s linear infinite;
+  }
+
+  li {
+    width: 378px;
+    height: 212px;
+    border-radius: 10px;
+    background-size: cover;
+    position: relative;
+    margin: 0 10px 20px;
+    cursor: pointer;
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0;
+      transition: opacity 0.4s ease-out;
+    }
+
+    button {
+      background: #fff;
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 980px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      transform: translate(-50%, -30%);
+      transition: all 0.4s ease-out;
+    }
+
+    &:hover .overlay {
+      opacity: 0.4;
+    }
+
+    &:hover button {
+      opacity: 0.9;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-3980px / 2));
+  }
+}

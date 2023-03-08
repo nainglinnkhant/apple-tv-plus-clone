@@ -1,0 +1,29 @@
+.value-section {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 150px;
+
+  & > div {
+    width: 980px;
+    margin: 0 auto;
+  }
+
+  li {
+    font-size: 45px;
+    font-weight: 600;
+    margin-top: 50px;
+    opacity: 0;
+    transform: translateY(50px);
+    will-change: opacity, transform;
+    transition: transform 0.6s, opacity 0.6s;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &.value-entered {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
