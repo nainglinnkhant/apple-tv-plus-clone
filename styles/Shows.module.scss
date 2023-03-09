@@ -4,16 +4,30 @@
   overflow: hidden;
   padding-bottom: 100px;
 
-  .shows-marquee {
+  .marquee-wrapper {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+
+    &:hover ul {
+      animation-play-state: paused;
+    }
   }
 
   ul {
+    flex-shrink: 0;
     display: flex;
-    width: 3980px;
-    position: relative;
-    white-space: nowrap;
-    will-change: transform;
+    justify-content: space-around;
+    min-width: 100%;
     animation: marquee 10s linear infinite;
+  }
+
+  ul.marquee-one {
+    animation-duration: 70s;
+  }
+
+  ul.marquee-two {
+    animation-duration: 60s;
   }
 
   li {
@@ -75,6 +89,6 @@
   }
 
   100% {
-    transform: translateX(calc(-3980px / 2));
+    transform: translateX(calc(-100%));
   }
 }
