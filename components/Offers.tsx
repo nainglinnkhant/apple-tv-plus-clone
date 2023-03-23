@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import { isInViewport } from '../utils'
+import Offer from './Offer'
 import styles from '../styles/Offers.module.scss'
 
 const OFFERS = [
@@ -46,58 +45,15 @@ const OFFERS = [
   },
 ]
 
-const THRESHOLD = 50
+export type OfferType = typeof OFFERS[number]
 
 const Offers = () => {
-  const [offerOneEntered, setOfferOneEntered] = useState(false)
-  const [offerTwoEntered, setOfferTwoEntered] = useState(false)
-  const [offerThreeEntered, setOfferThreeEntered] = useState(false)
-
-  const handleScroll = () => {
-    const offerOne = document.getElementById('offer-1')
-    const offerTwo = document.getElementById('offer-2')
-    const offerThree = document.getElementById('offer-3')
-
-    setOfferOneEntered(isInViewport(offerOne, THRESHOLD))
-    setOfferTwoEntered(isInViewport(offerTwo, THRESHOLD))
-    setOfferThreeEntered(isInViewport(offerThree, THRESHOLD))
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const calClass = (index: number) => {
-    switch (index) {
-      case 1:
-        return offerOneEntered ? styles['offer-entered'] : ''
-      case 2:
-        return offerTwoEntered ? styles['offer-entered'] : ''
-      case 3:
-        return offerThreeEntered ? styles['offer-entered'] : ''
-    }
-  }
-
   return (
     <section className={styles['offers-section']}>
       <div>
         <div className={styles['offer-list']}>
-          {OFFERS.map(({ title, price, description, action }, index) => (
-            <div
-              id={`offer-${index + 1}`}
-              key={title}
-              className={`${styles['offer-item']} ${calClass(index + 1)}`}
-            >
-              <h2>{title}</h2>
-
-              <h3>{price}</h3>
-
-              {description}
-
-              <button>{action}</button>
-            </div>
+          {OFFERS.map((offer) => (
+            <Offer key={offer.title} offer={offer} />
           ))}
         </div>
       </div>
